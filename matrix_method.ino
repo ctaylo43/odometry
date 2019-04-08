@@ -12,7 +12,9 @@
 
 // Global Variables //
 float phi = (RADIUS * deg2rad(90 / GEAR_RATIO));
+double delta_x = 0, delta_y = 0, z = 0;
 
+// Matrices //
 Matrix<4,4> right_wheel = {
    cos(phi),  -sin(phi),  0,  0,
    sin(phi),  cos(phi), 0,  L / 2,
@@ -37,6 +39,12 @@ Matrix<4,4> left_translate = {
   0,  0,  1,  0,
   0,  0,  0,  1};
 
+Matrix<4,4> global_matrix = {
+  1,  0,  0,  0,
+  0,  1,  0,  0,
+  0,  0,  1,  0,
+  0,  0,  0,  1};
+
 Matrix<4,4> right_transform = right_wheel * right_translate;
 Matrix<4,4> left_transform = left_wheel * left_translate;
 
@@ -50,15 +58,17 @@ void setup() {
 
 void loop()
 {
-  // do nothing, wait for interrupts
+  delta_x = global_matrix(0,4);
+  delta_y = global_matrix(1,4);
+  z = acos(global_matrix(0,0));
 }
 
 void ISR_L()
 {
-  
+  global_matrix *= left_transform;
 }
 
 void ISR_R()
 {
-  
+  global_matrix *= right_transform;
 }
