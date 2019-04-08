@@ -26,7 +26,8 @@ void setup() {
 
 void loop()
 {
-  // do nothing, wait for interrupts
+  float delta_x = (L / 2) * sin(phi);
+  float delta_y = (L / 2) * (1 - cos(phi));
 }
 
 void ISR_L()
