@@ -9,7 +9,7 @@
 
 
 // Global Variables //
-float global_phi = 0, phi = (radius * deg2rad(90 / GEAR_RATIO));
+float global_phi = 0, phi = (RADIUS * deg2rad(90 / GEAR_RATIO));
 float delta_x = (L / 2) * sin(phi);
 float global_x = 0, d_prime_x;
 float delta_y = (L / 2) * (1 - cos(phi));
