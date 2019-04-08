@@ -61,6 +61,9 @@ void loop()
   delta_x = global_matrix(0,4);
   delta_y = global_matrix(1,4);
   z = acos(global_matrix(0,0));
+  Serial(delta_x);
+  Serial(delta_y);
+  Serial(z);
 }
 
 void ISR_L()
